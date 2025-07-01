@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic E-Commerce Order Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #703caa;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .summary {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #e9ffe9;
+      border: 1px solid #b3ffb3;
+      border-radius: 10px;
+    }
+
+    .summary h3 {
+      margin-top: 0;
+      color: #155724;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🛒 Order your product</h1>
+
+  <div class="form-container">
+    <form id="orderForm">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" required>
+
+      <label for="product">Select Product:</label>
+      <select id="product" required>
+        <option value="">-- Choose a Product --</option>
+        <option value="Smartphone">Smartphone</option>
+        <option value="Laptop">Laptop</option>
+        <option value="Headphones">Headphones</option>
+        <option value="Smart Watch">Smart Watch</option>
+      </select>
+
+      <label for="address">Delivery Address:</label>
+      <textarea id="address" rows="3" required></textarea>
+
+      <label for="payment">Payment Method:</label>
+      <select id="payment" required>
+        <option value="">-- Select Payment Method --</option>
+        <option value="Cash on Delivery">Cash on Delivery</option>
+        <option value="UPI">UPI</option>
+        <option value="Card">Credit/Debit Card</option>
+      </select>
+
+      <button type="submit">Place Order</button>
+    </form>
+
+    <div class="summary" id="summary" style="display: none;"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('orderForm');
+    const summary = document.getElementById('summary');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // prevent actual form submission
+
+      // Collect form values
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const product = document.getElementById('product').value;
+      const address = document.getElementById('address').value;
+      const payment = document.getElementById('payment').value;
+
+      // Display summary
+      summary.innerHTML = `
+        <h3>✅ Order Confirmed!</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Product:</strong> ${product}</p>
+        <p><strong>Delivery Address:</strong> ${address}</p>
+        <p><strong>Payment Method:</strong> ${payment}</p>
+        <p>Thank you for your order! We will contact you shortly.</p>
+      `;
+      summary.style.display = 'block';
+      form.reset(); // Clear form
+    });
+  </script>
+
+</body>
+</html>
